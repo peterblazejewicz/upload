@@ -49,6 +49,10 @@ s-upload .s-upload-buttons {
   flex-direction: row;
 }
 
+s-upload .s-upload-all-files {
+  margin-left: auto;
+}
+
 s-upload .s-upload-drop-label {
   display: flex;
   align-items: center;

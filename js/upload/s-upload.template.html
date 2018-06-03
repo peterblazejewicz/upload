@@ -8,6 +8,12 @@
     <span class="s-upload-icon s-upload-drop-icon"></span>
     <span ng-bind="::upload.i18n.dropFiles.many"></span>
   </div>
+  <div class="s-upload-all-files">
+    <button class="btn btn-primary" type="button" ng-click="upload._onAllFilesStart($event)" ng-disabled="upload.files.length === 0"
+    ng-hide="upload.autoupload || upload.files.length === 0"
+      ng-bind="upload.i18n.uploadFiles">
+    </button>
+  </div>
 </div>
 <div class="s-upload-file-list">
   <s-upload-file ng-repeat="file in upload.files" file="file" on-file-abort="upload._onFileAbort(detail)" on-file-remove="upload._onFileRemove(detail)"

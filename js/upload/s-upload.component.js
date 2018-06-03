@@ -40,9 +40,14 @@
           }.bind(this),
         ),
       );
-      this.watchers.push(this.$attrs.$observe('noAuto', function() {
-        this.autoupload = angular.isUndefined(this.$attrs.noAuto);
-      }.bind(this)));
+      this.watchers.push(
+        this.$attrs.$observe(
+          'noAuto',
+          function() {
+            this.autoupload = angular.isUndefined(this.$attrs.noAuto);
+          }.bind(this),
+        ),
+      );
     },
     $postLink: function() {
       this.$fileInput = this.$elem.find('input[type="file"]');
@@ -108,6 +113,15 @@
 
     _onFileStart: function(detail) {
       this._uploadFile(detail.file);
+    },
+
+    _onAllFilesStart: function($event) {
+      Array.prototype.forEach.call(
+        this.files.filter(function(file) {
+          return file.held;
+        }),
+        this._uploadFile.bind(this),
+      );
     },
 
     _addFiles: function(files) {

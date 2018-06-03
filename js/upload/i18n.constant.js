@@ -13,6 +13,7 @@
       one: 'Select File...',
       many: 'Upload Files...',
     },
+    uploadFiles: 'Upload All Files',
     cancel: 'Cancel',
     error: {
       tooManyFiles: 'Too Many Files.',
