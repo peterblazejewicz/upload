@@ -47,7 +47,7 @@
       this.watchers.forEach(function(unwatch) {
         unwatch();
       });
-      this.watches = null;
+      this.watchers = null;
     },
 
     _fileAborted: function(abort) {
