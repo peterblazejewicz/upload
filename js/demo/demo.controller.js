@@ -31,8 +31,8 @@
     onUploadProgress: function(detail) {
       console.log('onUploadProgress');
     },
-    onUploadReponse: function(detail) {
-      console.log('onUploadReponse');
+    onUploadResponse: function(detail) {
+      console.log('onUploadResponse');
     },
     onUploadRequest: function(detail) {
       console.log('onUploadRequest');

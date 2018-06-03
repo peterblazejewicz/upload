@@ -348,8 +348,8 @@
               file.status = '';
               // Custom listener can modify the default behavior either
               // preventing default, changing the xhr, or setting the file error
-              this.onUploadReponse &&
-                this.onUploadReponse({
+              this.onUploadResponse &&
+                this.onUploadResponse({
                   detail: { file, xhr },
                 });
               // TODO implementation
