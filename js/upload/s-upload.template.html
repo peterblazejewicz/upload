@@ -10,7 +10,8 @@
   </div>
 </div>
 <div class="s-upload-file-list">
-  <s-upload-file ng-repeat="file in upload.files" file="file">
+  <s-upload-file ng-repeat="file in upload.files" file="file" on-file-abort="upload._onFileAbort(detail)" on-file-remove="upload._onFileRemove(detail)"
+    on-file-retry="upload._onFileRetry(detail)" on-file-start="upload._onFileStart(detail)">
   </s-upload-file>
 </div>
 <input type="file" hidden class="file-input" ng-attr-accept="{{upload.accept}}" ng-attr-capture="{{upload.capture || undefined}}">

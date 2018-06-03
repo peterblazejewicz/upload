@@ -1,3 +1,8 @@
+/**
+ * This work contains derivative code of Vaadin's file upload
+ * licensed under Apache License 2.0
+ * https://github.com/vaadin/vaadin-upload/blob/master/LICENSE
+ */
 (function(angular, undefined) {
   function UploadController($elem, i18n, $scope, $location) {
     this.$elem = $elem;
@@ -78,6 +83,22 @@
 
     _onFileInputChange: function($event) {
       this._addFiles($event.target.files);
+    },
+
+    _onFileAbort: function(detail) {
+      console.log(detail);
+    },
+
+    _onFileRemove: function(detail) {
+      console.log(detail);
+    },
+
+    _onFileRetry: function(detail) {
+      console.log(detail);
+    },
+
+    _onFileStart: function(detail) {
+      console.log(detail);
     },
 
     _addFiles: function(files) {

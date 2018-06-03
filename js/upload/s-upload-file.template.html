@@ -9,12 +9,11 @@
     </div>
   </div>
   <div class="upload-file-commands">
-    <div class="s-upload-icon commands-start-button" file-event="file-start" on-click="_fireFileEvent" ng-hide="!$ctrl.file.held"
-      role="button" tabindex="0" />
-    <div class="s-upload-icon commands-retry-button" file-event="file-retry" on-click="_fireFileEvent" ng-hide="{{!$ctrl.file.error}}"
-      role="button" tabindex="0" />
-    <div class="s-upload-icon commands-clear-button" file-event="file-abort" on-click="_fireFileEvent" role="button" tabindex="0"
-    />
+    <div class="s-upload-icon commands-start-button" ng-click="$ctrl._onFileStart($event)" ng-hide="!$ctrl.file.held" role="button"
+      tabindex="0" />
+    <div class="s-upload-icon commands-retry-button" ng-click="$ctrl._onFileRetry($event)" ng-hide="{{!$ctrl.file.error}}" role="button"
+      tabindex="0" />
+    <div class="s-upload-icon commands-clear-button" ng-click="$ctrl._onFileAbort($event)" role="button" tabindex="0" />
   </div>
 </div>
 <div class="progress" style="height: 5px;" ng-hide="$ctrl.file.complete">
