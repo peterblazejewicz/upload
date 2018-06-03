@@ -18,6 +18,29 @@
       },
     ];
   }
+  DemoController.prototype = {
+    onUploadBefore: function(detail) {
+      console.log('onUploadBefore');
+    },
+    onUploadError: function(detail) {
+      console.log('onUploadError');
+    },
+    onUploadProgress: function(detail) {
+      console.log('onUploadProgress');
+    },
+    onUploadReponse: function(detail) {
+      console.log('onUploadReponse');
+    },
+    onUploadRequest: function(detail) {
+      console.log('onUploadRequest');
+    },
+    onUploadStart: function(detail) {
+      console.log('onUploadStart');
+    },
+    onUploadSuccess: function(detail) {
+      console.log('onUploadSuccess');
+    },
+  };
   DemoController.nameToken = 'DemoController';
   angular
     .module('demoApp')

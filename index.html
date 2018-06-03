@@ -17,9 +17,16 @@
 <body>
 
   <div ng-controller="DemoController as demo">
-    <s-upload id="demo-upload" target="serverUrl" method="'POST'" timeout="300000" headers="{'X-Custom-Header': 'value'}" form-data-name="my-attachment"
-      nodrop max-files="5" max-file-size="1000000" accept="'application/pdf'" upload-before="" upload-request="" upload-start=""
-      upload-response="" files="demo.files" no-auto on-click="">
+    <s-upload id="demo-upload" target="'http://localhost:3001/upload'" method="'POST'" timeout="300000" headers="{'X-Custom-Header': 'value'}" form-data-name="my-attachment"
+      nodrop max-files="5" max-file-size="1000000" accept="'application/pdf'"
+      on-upload-before="demo.onUploadBefore(detail)"
+      on-upload-error="demo.onUploadError(detail)"
+      on-upload-progress="demo.onUploadProgress(detail)"
+      on-upload-reponse="demo.onUploadReponse(detail)"
+      on-upload-request="demo.onUploadRequest(detail)"
+      on-upload-start="demo.onUploadStart(detail)"
+      on-upload-success="demo.onUploadSuccess(detail)"
+      files="demo.files" no-auto on-click="">
     </s-upload>
   </div>
 
