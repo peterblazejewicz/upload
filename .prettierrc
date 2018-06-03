@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": { "parser": "json" }
+    }
+  ],
+  "parser": "babylon",
+  "singleQuote": true,
+  "trailingComma": "all",
+}

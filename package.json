@@ -1,0 +1,25 @@
+{
+  "name": "upload",
+  "version": "1.0.0",
+  "description": "Port of Vaadin's file upload",
+  "private": true,
+  "scripts": {
+    "prettier": "prettier --config .prettierrc --write  \"js/**/*.js\"",
+    "start": "serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterblazejewicz/upload.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterblazejewicz/upload/issues"
+  },
+  "homepage": "https://github.com/peterblazejewicz/upload#readme",
+  "devDependencies": {
+    "prettier": "^1.13.4",
+    "serve": "^7.2.0"
+  }
+}

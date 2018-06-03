@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  Peter Blazejewicz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css'>
+<link rel='stylesheet prefetch' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <div ng-controller="DemoController as demo">
+    <s-upload id="demo-upload"
+            target="serverUrl" 
+            method="'POST'"
+            timeout="300000"
+            headers="{'X-Custom-Header': 'value'}"
+            form-data-name="my-attachment"
+            nodrop
+            max-files="5"
+            max-file-size="1000000"
+            accept="'application/pdf'"
+            upload-before=""
+            upload-request=""
+            upload-start=""
+            upload-response=""
+            files="demo.files"
+            no-auto
+            on-click="">
+  </s-upload>
+</div>
+<script type="text/ng-template" id="s-upload.tpl">
+  <div class="s-upload-buttons">
+    <div class="s-upload-add-files">
+        <button class="btn btn-primary"
+            type="button" 
+            ng-click="upload._onAddFilesClick($event)"
+            ng-disabled="upload.maxFilesReached" 
+            ng-bind="upload.i18n.addFiles.many">
+        </button>
+    </div>
+    <div class="s-upload-drop-label">
+        <span class="s-upload-icon s-upload-drop-icon"></span>
+        <span ng-bind="::upload.i18n.dropFiles.many"></span>
+    </div>
+  </div>
+  <div class="s-upload-file-list">
+      <s-upload-file ng-repeat="file in upload.files" file="file">
+      </s-upload-file>
+  </div>
+  <input type="file" 
+      hidden
+      class="file-input"
+      ng-attr-accept="{{upload.accept}}" 
+      ng-attr-capture="{{upload.capture || undefined}}">
+</script>
+<script type="text/ng-template" id="s-upload-file.tpl">
+  <div class="upload-file">
+    <div class="upload-file-info">
+        <div class="s-upload-icon info-done-icon" ng-hide="!$ctrl.file.complete" />
+        <div class="s-upload-icon info-warning-icon" ng-hide="!$ctrl.file.error" />
+        <div class="info-meta">
+            <div class="meta-name" ng-bind="::$ctrl.file.name"></div>
+            <div class="meta-status" ng-hide="!$ctrl.file.status" ng-bind="$ctrl.file.status" />
+            <div class="meta-error" ng-hide="!$ctrl.file.error" ng-bind="$ctrl.file.error" />
+        </div>
+    </div>
+    <div class="upload-file-commands">
+        <div class="s-upload-icon commands-start-button" file-event="file-start" on-click="_fireFileEvent" ng-hide="!$ctrl.file.held" role="button" tabindex="0"/>
+        <div class="s-upload-icon commands-retry-button" file-event="file-retry" on-click="_fireFileEvent" ng-hide="{{!$ctrl.file.error}}" role="button" tabindex="0" />
+        <div class="s-upload-icon commands-clear-button" file-event="file-abort" on-click="_fireFileEvent" role="button" tabindex="0" />
+    </div>
+  </div>
+  <div class="progress" 
+    style="height: 5px;"
+    ng-hide="$ctrl.file.complete">
+    <div class="progress-bar" 
+      role="progressbar" 
+      style="width: 0;" 
+      ng-style="{width: $ctrl.file.progress+'%'}" 
+      aria-valuenow="$ctrl.file.progress" 
+      aria-valuemin="0" 
+      aria-valuemax="100">
+    </div>
+  </div>
+</script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+s-upload {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border: 1px dashed silver;
+  border-radius: 5px;
+  padding: 1rem;
+  transition: background-color 0.6s, border-color 0.6s;
+}
+
+s-upload-file {
+  display: block;
+  padding: .5rem 0;
+}
+
+s-upload[hidden] {
+  display: none !important;
+}
+
+s-upload .upload-file {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+s-upload .info-meta {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+s-upload .meta-status,
+s-upload .meta-error {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+s-upload-file .meta-status {
+  color: var(--info);
+}
+
+s-upload-file .meta-error {
+  color: var(--danger);
+}
+
+s-upload .s-upload-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+s-upload .s-upload-drop-label {
+  display: flex;
+  align-items: center;
+  color: var(--gray-dark);
+  font-size: 1rem;
+  padding: .25rem 1.25rem;
+}
+
+s-upload .upload-file-info {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: baseline;
+}
+
+s-upload .s-upload-icon {
+  display: inline-block;
+  font-family: FontAwesome;
+  line-height: 1;
+  padding: .25rem;
+}
+
+s-upload .s-upload-drop-icon::before {
+  content: "\f093";
+  margin-right: .5rem;
+}
+
+s-upload .info-done-icon::before {
+  content: "\f00c";
+  color: var(--primary);
+}
+
+s-upload .info-warning-icon::before {
+  content: "\f06a";
+  color: var(--danger);
+}
+
+s-upload .info-done-icon,
+s-upload .info-warning-icon {
+  margin-right: .25rem;
+}
+
+s-upload .commands-start-button,
+s-upload .commands-retry-button,
+s-upload .commands-clear-button {
+  outline: inherit;
+  cursor: pointer;
+}
+
+s-upload .commands-start-button::before {
+  content: "\f04b";
+}
+
+s-upload .commands-retry-button::before {
+  content: "\f01e";
+}
+
+s-upload .commands-clear-button::before {
+  content: "\f00d";
+}
+
+s-upload-file {
+  display: block;
+}
+
+s-upload-file[hidden] {
+  display: none !important;
+}
