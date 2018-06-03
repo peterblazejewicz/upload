@@ -285,79 +285,83 @@
       var stalledId, last;
       // onprogress is called always after onreadystatechange
       xhr.upload.onprogress = e => {
-        this.$scope.$applyAsync(function() {
-          clearTimeout(stalledId);
-          last = Date.now();
-          var elapsed = (last - ini) / 1000;
-          var loaded = e.loaded,
-            total = e.total,
-            progress = ~~((loaded / total) * 100);
-          file.loaded = loaded;
-          file.progress = progress;
-          file.indeterminate = loaded <= 0 || loaded >= total;
-          if (file.error) {
-            file.indeterminate = file.status = undefined;
-          } else if (!file.abort) {
-            if (progress < 100) {
-              this._setStatus(file, total, loaded, elapsed);
-              stalledId = setTimeout(() => {
-                file.status = this.i18n.uploading.status.stalled;
-              }, 2000);
-            } else {
-              file.loadedStr = file.totalStr;
-              file.status = this.i18n.uploading.status.processing;
-              file.uploading = false;
+        this.$scope.$applyAsync(
+          function() {
+            clearTimeout(stalledId);
+            last = Date.now();
+            var elapsed = (last - ini) / 1000;
+            var loaded = e.loaded,
+              total = e.total,
+              progress = ~~((loaded / total) * 100);
+            file.loaded = loaded;
+            file.progress = progress;
+            file.indeterminate = loaded <= 0 || loaded >= total;
+            if (file.error) {
+              file.indeterminate = file.status = undefined;
+            } else if (!file.abort) {
+              if (progress < 100) {
+                this._setStatus(file, total, loaded, elapsed);
+                stalledId = setTimeout(() => {
+                  file.status = this.i18n.uploading.status.stalled;
+                }, 2000);
+              } else {
+                file.loadedStr = file.totalStr;
+                file.status = this.i18n.uploading.status.processing;
+                file.uploading = false;
+              }
             }
-          }
-          if (this.onUploadProgress) {
-            this.onUploadProgress({
-              detail: { file, xhr },
-            });
-          }
-        });
+            if (this.onUploadProgress) {
+              this.onUploadProgress({
+                detail: { file, xhr },
+              });
+            }
+          }.bind(this),
+        );
       };
 
       // More reliable than xhr.onload
       xhr.onreadystatechange = () => {
-        this.$scope.$applyAsync(function() {
-          if (xhr.readyState == 4) {
-            clearTimeout(stalledId);
-            file.indeterminate = file.uploading = false;
-            if (file.abort) {
-              return;
-            }
-            file.status = '';
-            // Custom listener can modify the default behavior either
-            // preventing default, changing the xhr, or setting the file error
-            this.onUploadReponse &&
-              this.onUploadReponse({
-                detail: { file, xhr },
-              });
-            // TODO implementation
-            // if (!evt) {
-            //   return;
-            // }
-            if (xhr.status === 0) {
-              file.error = this.i18n.uploading.error.serverUnavailable;
-            } else if (xhr.status >= 500) {
-              file.error = this.i18n.uploading.error.unexpectedServerError;
-            } else if (xhr.status >= 400) {
-              file.error = this.i18n.uploading.error.forbidden;
-            }
-            file.complete = !file.error;
-            if (file.error) {
-              this.onUploadError &&
-                this.onUploadError({
+        this.$scope.$applyAsync(
+          function() {
+            if (xhr.readyState == 4) {
+              clearTimeout(stalledId);
+              file.indeterminate = file.uploading = false;
+              if (file.abort) {
+                return;
+              }
+              file.status = '';
+              // Custom listener can modify the default behavior either
+              // preventing default, changing the xhr, or setting the file error
+              this.onUploadReponse &&
+                this.onUploadReponse({
                   detail: { file, xhr },
                 });
-            } else {
-              this.onUploadSuccess &&
-                this.onUploadSuccess({
-                  detail: { file, xhr },
-                });
+              // TODO implementation
+              // if (!evt) {
+              //   return;
+              // }
+              if (xhr.status === 0) {
+                file.error = this.i18n.uploading.error.serverUnavailable;
+              } else if (xhr.status >= 500) {
+                file.error = this.i18n.uploading.error.unexpectedServerError;
+              } else if (xhr.status >= 400) {
+                file.error = this.i18n.uploading.error.forbidden;
+              }
+              file.complete = !file.error;
+              if (file.error) {
+                this.onUploadError &&
+                  this.onUploadError({
+                    detail: { file, xhr },
+                  });
+              } else {
+                this.onUploadSuccess &&
+                  this.onUploadSuccess({
+                    detail: { file, xhr },
+                  });
+              }
             }
-          }
-        });
+          }.bind(this),
+        );
       };
 
       var formData = new FormData();
@@ -381,12 +385,14 @@
       file.complete = file.abort = file.error = file.held = false;
 
       xhr.upload.onloadstart = () => {
-        this.$scope.$applyAsync(function() {
-          this.onUploadStart &&
-            this.onUploadStart({
-              detail: { file, xhr },
-            });
-        });
+        this.$scope.$applyAsync(
+          function() {
+            this.onUploadStart &&
+              this.onUploadStart({
+                detail: { file, xhr },
+              });
+          }.bind(this),
+        );
       };
 
       // Custom listener could modify the xhr just before sending it
@@ -417,6 +423,7 @@
       maxFiles: '<',
       maxFileSize: '<',
       method: '<',
+      noAuto: '<',
       target: '<',
       timeout: '<',
       onFileReject: '&',
