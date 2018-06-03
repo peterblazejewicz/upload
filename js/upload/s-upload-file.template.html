@@ -16,7 +16,8 @@
     <div class="s-upload-icon commands-clear-button" ng-click="$ctrl._onFileAbort($event)" role="button" tabindex="0" />
   </div>
 </div>
-<div class="progress" style="height: 5px;" ng-hide="$ctrl.file.complete">
+<div class="progress" style="height: 5px;" ng-hide="$ctrl.file.complete" ng-attr-error="{{!!$ctrl.file.error ? '' : undefined}}" ng-attr-indeterminate="{{!!$ctrl.file.indeterminate ? '' : undefined}}"
+  ng-attr-uploading="{{!!$ctrl.file.uploading ? '' : undefined}}" ng-attr-complete="{{!!$ctrl.file.complete ? '' : undefined}}">
   <div class="progress-bar" role="progressbar" style="width: 0;" ng-style="{width: $ctrl.file.progress+'%'}" aria-valuenow="$ctrl.file.progress"
     aria-valuemin="0" aria-valuemax="100">
   </div>
