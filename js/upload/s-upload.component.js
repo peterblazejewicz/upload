@@ -337,10 +337,10 @@
 
       // More reliable than xhr.onload
       xhr.onreadystatechange = () => {
-        this.$scope.$applyAsync(
-          function() {
-            if (xhr.readyState == 4) {
-              clearTimeout(stalledId);
+        if (xhr.readyState == 4) {
+          clearTimeout(stalledId);
+          this.$scope.$applyAsync(
+            function() {
               file.indeterminate = file.uploading = false;
               if (file.abort) {
                 return;
@@ -375,9 +375,9 @@
                     detail: { file, xhr },
                   });
               }
-            }
-          }.bind(this),
-        );
+            }.bind(this),
+          );
+        }
       };
 
       var formData = new FormData();
