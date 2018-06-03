@@ -1,9 +1,16 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
+const cors = require('cors')
 const app = express();
 
 // default options
 app.use(fileUpload());
+var corsOptions = {
+  origin: '*',
+  // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.post('/upload', function (req, res) {
   if (!req.files)
