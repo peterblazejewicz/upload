@@ -447,7 +447,7 @@
       onUploadBefore: '&',
       onUploadError: '&',
       onUploadProgress: '&',
-      onUploadReponse: '&',
+      onUploadResponse: '&',
       onUploadRequest: '&',
       onUploadStart: '&',
       onUploadSuccess: '&',
