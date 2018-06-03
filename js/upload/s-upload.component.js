@@ -100,7 +100,9 @@
 
     _onFileRetry: function(detail) {},
 
-    _onFileStart: function(detail) {},
+    _onFileStart: function(detail) {
+      this._uploadFile(detail.file);
+    },
 
     _addFiles: function(files) {
       Array.prototype.forEach.call(files, this._addFile.bind(this));
