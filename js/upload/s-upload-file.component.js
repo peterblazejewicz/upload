@@ -116,9 +116,9 @@
     templateUrl: 'js/upload/s-upload-file.template.html',
     bindings: {
       file: '<',
-      onFileRetry: '&',
       onFileAbort: '&',
       onFileRemove: '&',
+      onFileRetry: '&',
       onFileStart: '&',
     },
     controller: UploadFileController,
