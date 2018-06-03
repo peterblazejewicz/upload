@@ -32,7 +32,7 @@ s-upload .info-meta {
 
 s-upload .meta-status,
 s-upload .meta-error {
-  font-size: 1rem;
+  font-size: .875rem;
   line-height: 1;
 }
 
