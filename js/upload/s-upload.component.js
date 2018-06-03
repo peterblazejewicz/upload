@@ -55,6 +55,7 @@
       this.watchers.forEach(function(unwatch) {
         unwatch();
       });
+      this.watchers = null;
     },
     $onChanges: function(changes) {
       if (changes.maxFiles) {
@@ -85,21 +86,13 @@
       this._addFiles($event.target.files);
     },
 
-    _onFileAbort: function(detail) {
-      console.log(detail);
-    },
+    _onFileAbort: function(detail) {},
 
-    _onFileRemove: function(detail) {
-      console.log(detail);
-    },
+    _onFileRemove: function(detail) {},
 
-    _onFileRetry: function(detail) {
-      console.log(detail);
-    },
+    _onFileRetry: function(detail) {},
 
-    _onFileStart: function(detail) {
-      console.log(detail);
-    },
+    _onFileStart: function(detail) {},
 
     _addFiles: function(files) {
       Array.prototype.forEach.call(files, this._addFile.bind(this));
