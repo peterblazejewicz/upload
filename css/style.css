@@ -36,6 +36,10 @@ s-upload .meta-error {
   line-height: 1;
 }
 
+s-upload-file:first-of-type {
+  margin-top: .75rem;
+}
+
 s-upload-file .meta-status {
   color: var(--info);
 }
