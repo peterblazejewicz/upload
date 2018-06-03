@@ -11,7 +11,7 @@
     },
     addFiles: {
       one: 'Select File...',
-      many: 'Upload Files...',
+      many: 'Select Files...',
     },
     uploadFiles: 'Upload All Files',
     cancel: 'Cancel',
