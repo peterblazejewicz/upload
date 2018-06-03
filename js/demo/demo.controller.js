@@ -19,6 +19,9 @@
     ];
   }
   DemoController.prototype = {
+    onFileReject: function(detail) {
+      alert('onFileReject');
+    },
     onUploadBefore: function(detail) {
       console.log('onUploadBefore');
     },

@@ -130,19 +130,17 @@
 
     _addFile: function(file) {
       if (this.maxFilesReached) {
-        if (this.onFileReject) {
+        this.onFileReject &&
           this.onFileReject({
             detail: { file, error: this.i18n.tooManyFiles },
           });
-        }
         return;
       }
       if (this.maxFileSize >= 0 && file.size > this.maxFileSize) {
-        if (this.onFileReject) {
+        this.onFileReject &&
           this.onFileReject({
             detail: { file, error: this.i18n.error.fileIsTooBig },
           });
-        }
         return;
       }
       const fileExt = file.name.match(/\.[^\.]*$|$/)[0];
@@ -153,11 +151,10 @@
         'i',
       );
       if (this.accept && !(re.test(file.type) || re.test(fileExt))) {
-        if (this.onFileReject) {
+        this.onFileReject &&
           this.onFileReject({
             detail: { file, error: this.i18n.error.incorrectFileType },
           });
-        }
         return;
       }
       file.loaded = 0;
