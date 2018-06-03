@@ -90,9 +90,13 @@
       );
     },
 
-    _onFileAbort: function(detail) {},
+    _onFileAbort: function(detail) {
+      this._abortFileUpload(detail.file);
+    },
 
-    _onFileRemove: function(detail) {},
+    _onFileRemove: function(detail) {
+      this._removeFile(detail.file);
+    },
 
     _onFileRetry: function(detail) {},
 
@@ -143,6 +147,18 @@
       }
     },
 
+    _abortFileUpload: function(file) {
+      if(this.onUploadAbort) {
+        this.onUploadAbort({
+          detail: {file, xhr: file.xhr},
+        });
+      }
+      file.abort = true;
+      if (file.xhr) {
+        file.xhr.abort();
+      }
+    },
+
     _isMultiple: function(maxFiles) {
       return maxFiles != 1;
     },
@@ -158,6 +174,10 @@
 
     _maxFilesAdded: function(maxFiles, numFiles) {
       return maxFiles >= 0 && numFiles >= maxFiles;
+    },
+
+    _removeFile: function(file) {
+      this.files.splice(this.files.indexOf(file), 1);
     },
 
     _uploadFile: function(file) {

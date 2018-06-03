@@ -56,8 +56,8 @@
       }
     },
     _remove: function() {
-      if (this.onFileAbort) {
-        this.onFileAbort({
+      if (this.onFileRemove) {
+        this.onFileRemove({
           detail: {
             file: this.file,
           },
