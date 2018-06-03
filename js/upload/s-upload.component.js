@@ -4,12 +4,14 @@
  * https://github.com/vaadin/vaadin-upload/blob/master/LICENSE
  */
 (function(angular, undefined) {
-  function UploadController($elem, i18n, $scope, $location) {
+  function UploadController($elem, $attrs, i18n, $scope, $location) {
     this.$elem = $elem;
+    this.$attrs = $attrs;
     this.i18n = i18n;
     this.$scope = $scope;
     this.$location = $location;
     this.maxFilesReached = false;
+    this.autoupload = true;
     this.watchers = [];
   }
   UploadController.prototype = {
@@ -19,7 +21,7 @@
       this.formDataName = this.formDataName || 'file';
       this.maxFiles = isNaN(this.maxFiles) ? Infinity : this.maxFiles;
       this.method = this.method || 'POST';
-      this.noAuto = angular.isDefined(this.noAuto) ? this.noAuto : false;
+      this.autoupload = angular.isUndefined(this.$attrs.noAuto);
       this.target = this.target || '';
       this.timeout = isNaN(this.timeout) ? 0 : this.timeout;
       //
@@ -38,6 +40,9 @@
           }.bind(this),
         ),
       );
+      this.watchers.push(this.$attrs.$observe('noAuto', function() {
+        this.autoupload = angular.isUndefined(this.$attrs.noAuto);
+      }.bind(this)));
     },
     $postLink: function() {
       this.$fileInput = this.$elem.find('input[type="file"]');
@@ -145,7 +150,7 @@
       file.held = true;
       file.status = this.i18n.uploading.status.held;
       this.files.unshift(file);
-      if (!this.noAuto) {
+      if (this.autoupload) {
         this._uploadFile(file);
       }
     },
@@ -410,6 +415,7 @@
   };
   UploadController.$inject = [
     '$element',
+    '$attrs',
     'sUploadModule.i18n',
     '$scope',
     '$location',
@@ -423,7 +429,7 @@
       maxFiles: '<',
       maxFileSize: '<',
       method: '<',
-      noAuto: '<',
+      noAuto: '@',
       target: '<',
       timeout: '<',
       onFileReject: '&',
