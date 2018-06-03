@@ -51,7 +51,7 @@
       this.$elem.off('dragover');
       this.$elem.off('dragleave');
       this.$elem.off('drop');
-      this.$elem.off('change');
+      this.$fileInput.off('change');
       this.watchers.forEach(function(unwatch) {
         unwatch();
       });
@@ -83,7 +83,11 @@
     },
 
     _onFileInputChange: function($event) {
-      this._addFiles($event.target.files);
+      this.$scope.$apply(
+        function() {
+          this._addFiles($event.target.files);
+        }.bind(this),
+      );
     },
 
     _onFileAbort: function(detail) {},
@@ -134,7 +138,6 @@
       file.held = true;
       file.status = this.i18n.uploading.status.held;
       this.files.unshift(file);
-      this.$scope.$apply();
       if (!this.noAuto) {
         this._uploadFile(file);
       }
