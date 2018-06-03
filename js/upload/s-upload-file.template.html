@@ -1,0 +1,24 @@
+<div class="upload-file">
+  <div class="upload-file-info">
+    <div class="s-upload-icon info-done-icon" ng-hide="!$ctrl.file.complete" />
+    <div class="s-upload-icon info-warning-icon" ng-hide="!$ctrl.file.error" />
+    <div class="info-meta">
+      <div class="meta-name" ng-bind="::$ctrl.file.name"></div>
+      <div class="meta-status" ng-hide="!$ctrl.file.status" ng-bind="$ctrl.file.status" />
+      <div class="meta-error" ng-hide="!$ctrl.file.error" ng-bind="$ctrl.file.error" />
+    </div>
+  </div>
+  <div class="upload-file-commands">
+    <div class="s-upload-icon commands-start-button" file-event="file-start" on-click="_fireFileEvent" ng-hide="!$ctrl.file.held"
+      role="button" tabindex="0" />
+    <div class="s-upload-icon commands-retry-button" file-event="file-retry" on-click="_fireFileEvent" ng-hide="{{!$ctrl.file.error}}"
+      role="button" tabindex="0" />
+    <div class="s-upload-icon commands-clear-button" file-event="file-abort" on-click="_fireFileEvent" role="button" tabindex="0"
+    />
+  </div>
+</div>
+<div class="progress" style="height: 5px;" ng-hide="$ctrl.file.complete">
+  <div class="progress-bar" role="progressbar" style="width: 0;" ng-style="{width: $ctrl.file.progress+'%'}" aria-valuenow="$ctrl.file.progress"
+    aria-valuemin="0" aria-valuemax="100">
+  </div>
+</div>

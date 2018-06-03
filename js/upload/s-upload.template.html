@@ -1,0 +1,16 @@
+<div class="s-upload-buttons">
+  <div class="s-upload-add-files">
+    <button class="btn btn-primary" type="button" ng-click="upload._onAddFilesClick($event)" ng-disabled="upload.maxFilesReached"
+      ng-bind="upload.i18n.addFiles.many">
+    </button>
+  </div>
+  <div class="s-upload-drop-label">
+    <span class="s-upload-icon s-upload-drop-icon"></span>
+    <span ng-bind="::upload.i18n.dropFiles.many"></span>
+  </div>
+</div>
+<div class="s-upload-file-list">
+  <s-upload-file ng-repeat="file in upload.files" file="file">
+  </s-upload-file>
+</div>
+<input type="file" hidden class="file-input" ng-attr-accept="{{upload.accept}}" ng-attr-capture="{{upload.capture || undefined}}">

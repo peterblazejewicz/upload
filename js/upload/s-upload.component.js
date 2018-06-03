@@ -156,7 +156,7 @@
     '$location',
   ];
   angular.module('sUploadModule').component('sUpload', {
-    templateUrl: 's-upload.tpl',
+    templateUrl: 'js/upload/s-upload.template.html',
     bindings: {
       files: '<',
       accept: '<',
