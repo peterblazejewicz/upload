@@ -27,15 +27,15 @@
         this.$scope.$watchCollection(
           function() {
             return this.files;
-          },
+          }.bind(this),
           function(newValue, oldValue) {
             if (this.files) {
-              this.maxFilesReached = this.__maxFilesAdded(
+              this.maxFilesReached = this._maxFilesAdded(
                 this.maxFiles,
-                this.files.lenght,
+                this.files.length,
               );
             }
-          },
+          }.bind(this),
         ),
       );
     },
