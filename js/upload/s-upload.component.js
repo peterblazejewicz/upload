@@ -16,6 +16,7 @@
     $onInit: function() {
       // defaults
       this.accept = this.accept || '';
+      this.formDataName = this.formDataName || 'file';
       this.maxFiles = isNaN(this.maxFiles) ? Infinity : this.maxFiles;
       this.method = this.method || 'POST';
       this.noAuto = angular.isDefined(this.noAuto) ? this.noAuto : false;
@@ -412,6 +413,7 @@
     bindings: {
       accept: '<',
       files: '<',
+      formDataName: '<',
       maxFiles: '<',
       maxFileSize: '<',
       method: '<',
