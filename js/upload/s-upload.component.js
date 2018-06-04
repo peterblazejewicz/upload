@@ -85,13 +85,32 @@
     },
 
     _onDragOver: function(event) {
-      console.log(event.type);
+      event.preventDefault();
+      if (angular.isUndefined(this.nodrop) && !this._dragover) {
+        this._dragoverValid = !this.maxFilesReached;
+        this._dragover = true;
+      }
+      (event.dataTransfer || event.originalEvent.dataTransfer).dropEffect =
+        !this._dragoverValid || angular.isDefined(this.nodrop)
+          ? 'none'
+          : 'copy';
     },
     _onDragLeave: function(event) {
-      console.log(event.type);
+      event.preventDefault();
+      if (this._dragover && angular.isUndefined(this.nodrop)) {
+        this._dragover = this._dragoverValid = false;
+      }
     },
     _onDrop: function(event) {
-      console.log(event.type);
+      if (angular.isUndefined(this.nodrop)) {
+        event.preventDefault();
+        this._dragover = this._dragoverValid = false;
+        this.$scope.$applyAsync(function() {
+          this._addFiles(
+            (event.dataTransfer || event.originalEvent.dataTransfer).files,
+          );
+        }.bind(this));
+      }
     },
 
     _onAddFilesClick: function($event) {
