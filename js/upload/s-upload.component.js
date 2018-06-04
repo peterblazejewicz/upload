@@ -52,6 +52,15 @@
     $postLink: function() {
       this.$fileInput = this.$elem.find('input[type="file"]');
       this._updateMultiple();
+      if (angular.isUndefined(this.$attrs.nodrop)) {
+        try {
+          if (!!document.createEvent('TouchEvent')) {
+            this.$elem.attr('nodrop', '');
+          }
+        } catch (error) {
+          this.$elem.removeAttr('nodrop');
+        }
+      }
       //
       this.$elem.on('dragover', this._onDragOver.bind(this));
       this.$elem.on('dragleave', this._onDragLeave.bind(this));
@@ -441,6 +450,8 @@
       maxFileSize: '<',
       method: '<',
       noAuto: '@',
+      // boolean attribute
+      nodrop: '@',
       target: '<',
       timeout: '<',
       onFileReject: '&',

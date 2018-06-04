@@ -18,7 +18,7 @@
 
   <div ng-controller="DemoController as demo">
     <s-upload id="demo-upload" target="'http://localhost:3001/upload'" method="'POST'" timeout="300000" headers="{'X-Custom-Header': 'value'}" form-data-name="my-attachment"
-      nodrop max-files="2" max-file-size="1000000" accept="'application/pdf'"
+      max-files="2" max-file-size="1000000" accept="'application/pdf'"
       on-file-reject="demo.onFileReject(detail)"
       on-upload-before="demo.onUploadBefore(detail)"
       on-upload-error="demo.onUploadError(detail)"
