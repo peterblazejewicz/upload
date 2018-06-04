@@ -53,8 +53,8 @@
       this.$fileInput = this.$elem.find('input[type="file"]');
       this._updateMultiple();
       //
-      this.$elem.on('dragover', this._onDragover.bind(this));
-      this.$elem.on('dragleave', this._onDragleave.bind(this));
+      this.$elem.on('dragover', this._onDragOver.bind(this));
+      this.$elem.on('dragleave', this._onDragLeave.bind(this));
       this.$elem.on('drop', this._onDrop.bind(this));
       this.$fileInput.on('change', this._onFileInputChange.bind(this));
     },
@@ -75,10 +75,10 @@
       }
     },
 
-    _onDragover: function(event) {
+    _onDragOver: function(event) {
       console.log(event.type);
     },
-    _onDragleave: function(event) {
+    _onDragLeave: function(event) {
       console.log(event.type);
     },
     _onDrop: function(event) {
