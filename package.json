@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "prettier": "prettier --config .prettierrc --write  \"js/**/*.js\"",
-    "start": "serve ."
+    "start": "serve .",
+    "tsc:watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,9 @@
   },
   "homepage": "https://github.com/peterblazejewicz/upload#readme",
   "devDependencies": {
+    "@types/angular": "^1.6.45",
     "prettier": "^1.13.4",
-    "serve": "^7.2.0"
+    "serve": "^7.2.0",
+    "typescript": "^2.9.1"
   }
 }

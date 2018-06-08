@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "umd",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "listFiles": true,
+    "allowJs": true,
+    "rootDir": "./js",
+    "outDir": "./dist"
+  },
+  "include": [
+    "./js"
+  ]
+}
